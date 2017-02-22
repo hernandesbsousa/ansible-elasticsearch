@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% if es_config %}
+{{ es_config | to_nice_yaml }}
+{% endif %}
