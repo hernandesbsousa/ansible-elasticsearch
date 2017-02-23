@@ -1,0 +1,31 @@
+- name: Import ES key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add repository
+  apt_repository:
+    repo: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+    state: present
+
+- name: Install required packages
+  apt:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - openjdk-8-jdk-headless
+    - elasticsearch
+
+- name: Setup config
+  template:
+    src: elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+    owner: root
+    group: elasticsearch
+    mode: 0644
+  notify: restart elasticsearch
+
+- name: Start Elasticsearch
+  service:
+    name: elasticsearch
+    state: started
