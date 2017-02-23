@@ -23,6 +23,7 @@
     owner: root
     group: elasticsearch
     mode: 0644
+  notify: restart elasticsearch
 
 - name: Start Elasticsearch
   service:
