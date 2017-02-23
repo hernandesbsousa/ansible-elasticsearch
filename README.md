@@ -1,7 +1,7 @@
 Ansible Elasticsearch
 =========
 
-Simple ElasticSearch installation
+Very simple ElasticSearch installation, based on the [official Elastic role](https://github.com/elastic/ansible-elasticsearch).
 
 Requirements
 ------------
